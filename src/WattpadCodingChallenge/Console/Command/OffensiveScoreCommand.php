@@ -15,6 +15,8 @@ class OffensiveScoreCommand extends Command
 {
     const NAME = 'wattpad:offensivescore';
 
+    const OUTPUT_FILENAME = 'output.txt';
+
     /** @var InputFileService */
     private $inputFileService;
 
@@ -40,26 +42,48 @@ class OffensiveScoreCommand extends Command
         $files = $this->inputFileService->getInputFilesFromDirectory(
             $this->resolvePath($input)
         );
+        $output->writeln('Calculating offensive score for input files...');
+        $output->writeln('-------------------------');
+        $results = [];
 
         /** @var File $file */
         foreach ($files as $file) {
             $score = $this->offensiveScoreService->calculateOffensiveScore($file);
-            $this->recordOffensiveScoreForFile($score, $file, $output);
+            $results[] = $this->recordOffensiveScoreForFile($score, $file, $output);
         }
+
+        $output->writeln('-------------------------');
+        $path = $this->resolveOutputPath().DIRECTORY_SEPARATOR.self::OUTPUT_FILENAME;
+        file_put_contents($path, array_reduce($results, function ($carry, $value) {
+            $carry .= $value."\n";
+            return $carry;
+        }, ''));
+        $output->writeln('Written results to '.realpath($path));
     }
 
-    private function recordOffensiveScoreForFile(OffensiveScore $score, File $file, OutputInterface $output)
-    {
-        $output->writeln($file->getFilename().':'.$score->getScore());
+    private function recordOffensiveScoreForFile(OffensiveScore $score, File $file, OutputInterface $output) {
+        $record = $file->getFilename().':'.$score->getScore();
+        $output->writeln($record);
+        return $record;
     }
 
     private function resolvePath(InputInterface $input)
     {
         $path = $input->getArgument('path');
         if (!$path) {
-            $path = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.
-                    DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'input';
+            $path = $this->resolveDataDirectory().DIRECTORY_SEPARATOR.'input';
         }
         return realpath($path);
+    }
+
+    private function resolveDataDirectory()
+    {
+        return __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.
+               DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'data';
+    }
+
+    private function resolveOutputPath()
+    {
+        return $this->resolveDataDirectory().DIRECTORY_SEPARATOR.'output';
     }
 }
