@@ -31,6 +31,6 @@ class OffensiveScoreService
         foreach ($this->scorers as $scorer) {
             $score += $scorer->scoreWordCollection($words);
         }
-        return $score;
+        return new OffensiveScore($score);
     }
 }

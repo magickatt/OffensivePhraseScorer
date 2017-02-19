@@ -7,7 +7,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use WattpadCodingChallenge\File\File;
-use WattpadCodingChallenge\File\InputFileService;
+use WattpadCodingChallenge\File\Input\InputFileService;
+use WattpadCodingChallenge\OffensiveScore\OffensiveScore;
 use WattpadCodingChallenge\OffensiveScore\OffensiveScoreService;
 
 class OffensiveScoreCommand extends Command
@@ -39,10 +40,17 @@ class OffensiveScoreCommand extends Command
         $files = $this->inputFileService->getInputFilesFromDirectory(
             $this->resolvePath($input)
         );
+
         /** @var File $file */
         foreach ($files as $file) {
-            $output->writeln($file->getFilename());
+            $score = $this->offensiveScoreService->calculateOffensiveScore($file);
+            $this->recordOffensiveScoreForFile($score, $file, $output);
         }
+    }
+
+    private function recordOffensiveScoreForFile(OffensiveScore $score, File $file, OutputInterface $output)
+    {
+        $output->writeln($file->getFilename().':'.$score->getScore());
     }
 
     private function resolvePath(InputInterface $input)

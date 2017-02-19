@@ -1,6 +1,7 @@
 {
     "require": {
-        "symfony/console": "^3.2"
+        "symfony/console": "^3.2",
+        "php-di/php-di": "^5.4"
     },
     "autoload": {
         "psr-4": {"WattpadCodingChallenge\\": "src/WattpadCodingChallenge"}

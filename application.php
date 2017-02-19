@@ -6,10 +6,13 @@ use Symfony\Component\Console\Application;
 use WattpadCodingChallenge as W;
 
 $application = new Application();
-$command = new W\Console\Command\OffensiveScoreCommand(
-    new W\File\InputFileService(new W\File\InputFileScanner()),
-    new W\OffensiveScore\OffensiveScoreService(new W\File\WordExtractor())
-);
+$builder = new DI\ContainerBuilder();
+$builder->addDefinitions([
+    W\OffensiveScore\OffensiveScoreService::class => DI\factory([W\OffensiveScore\OffensiveScoreServiceFactory::class, 'create']),
+]);
+$container = $builder->build();
+
+$command = $container->get(W\Console\Command\OffensiveScoreCommand::class);
 $application->add($command);
 $application->setDefaultCommand($command->getName(), true);
 $application->run();

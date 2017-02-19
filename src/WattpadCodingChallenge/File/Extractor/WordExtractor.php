@@ -10,8 +10,8 @@ class WordExtractor
 {
     public function extractWordsFromFile(File $file)
     {
-        $contents = file_get_contents($file->getPath());
-        return $this->createWordCollectionFromArray(explode(' ', $contents));
+        $sentence = file_get_contents($file->getPath());
+        return $this->createWordCollectionFromArray(explode(' ', $sentence));
     }
 
     private function createWordCollectionFromArray(array $array)
