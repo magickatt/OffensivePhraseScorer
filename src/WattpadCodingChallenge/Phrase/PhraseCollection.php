@@ -3,7 +3,6 @@
 namespace WattpadCodingChallenge\Phrase;
 
 use WattpadCodingChallenge\Collection\Collection;
-use WattpadCodingChallenge\Word\WordCollection;
 
 class PhraseCollection extends Collection
 {

@@ -5,6 +5,7 @@ namespace spec\WattpadCodingChallenge\OffensiveScore;
 use PhpSpec\ObjectBehavior;
 use WattpadCodingChallenge\File\Extractor\WordExtractor;
 use WattpadCodingChallenge\File\File;
+use WattpadCodingChallenge\OffensiveScore\OffensiveScore;
 use WattpadCodingChallenge\OffensiveScore\Scorer\ScorerInterface;
 use WattpadCodingChallenge\Word\WordCollection;
 
@@ -23,6 +24,6 @@ class OffensiveScoreServiceSpec extends ObjectBehavior
         $scorer1->scoreWordCollection($words)->willReturn(1);
         $scorer2->scoreWordCollection($words)->willReturn(2);
 
-        $this->calculateOffensiveScore($file)->shouldReturn(3);
+        $this->calculateOffensiveScore($file)->shouldBeLike(new OffensiveScore(3));
     }
 }

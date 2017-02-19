@@ -3,11 +3,22 @@
 namespace WattpadCodingChallenge\File\Extractor;
 
 use WattpadCodingChallenge\File\File;
-use WattpadCodingChallenge\Word\Word;
+use WattpadCodingChallenge\Word\WordBuilder;
 use WattpadCodingChallenge\Word\WordCollection;
 
 class WordExtractor
 {
+    /** @var WordBuilder */
+    private $builder;
+
+    /**
+     * @param WordBuilder $builder
+     */
+    public function __construct(WordBuilder $builder)
+    {
+        $this->builder = $builder;
+    }
+
     public function extractWordsFromFile(File $file)
     {
         $sentence = file_get_contents($file->getPath());
@@ -18,7 +29,7 @@ class WordExtractor
     {
         $collection = new WordCollection();
         foreach ($array as $string) {
-            $collection->addWord(new Word($string));
+            $collection->addWord($this->builder->create($string));
         }
         return $collection;
     }

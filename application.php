@@ -9,6 +9,7 @@ $application = new Application();
 $builder = new DI\ContainerBuilder();
 $builder->addDefinitions([
     W\OffensiveScore\OffensiveScoreService::class => DI\factory([W\OffensiveScore\OffensiveScoreServiceFactory::class, 'create']),
+    W\Word\WordBuilder::class => DI\factory([W\Word\WordBuilderFactory::class, 'create']),
 ]);
 $container = $builder->build();
 

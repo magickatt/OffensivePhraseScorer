@@ -2,33 +2,35 @@
 
 namespace WattpadCodingChallenge\Word;
 
+use InvalidArgumentException;
+
 class Word
 {
+    /** @var string */
     private $string;
 
     public function __construct($string)
     {
-        $this->string = self::sanitizeWord($string);
+        if (!is_string($string)) {
+            throw new InvalidArgumentException($string.' is not a string ('.gettype($string).' supplied)');
+        }
+        $this->string = (string)$string;
     }
 
-    public function word()
+    /**
+     * @return string
+     */
+    public function getString()
     {
         return $this->string;
     }
 
+    /**
+     * @param Word $word
+     * @return bool
+     */
     public function equalTo(Word $word)
     {
-        return strcmp($word->word(), $this->word()) === 0;
-    }
-
-    public static function sanitizeWord($string)
-    {
-        return strtolower(
-            strtr(
-                preg_replace("/[^A-Za-z0-9 ]/", '', $string),
-                '0123456789',
-                'oizeasglbg'
-            )
-        );
+        return strcmp($word->getString(), $this->getString()) === 0;
     }
 }
