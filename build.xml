@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="WattpadCodingChallenge" default="build">
+    <target name="build" depends="phpspec,phpunit"/>
+    <target name="phpspec" description="Run unit tests with PHPSpec">
+        <exec executable="${basedir}/bin/phpspec" taskname="phpspec">
+            <arg value="run"/>
+            <arg value="--no-interaction"/>
+        </exec>
+    </target>
+    <target name="phpunit" description="Run integration tests with PHPUnit">
+        <exec executable="${basedir}/bin/phpunit" taskname="phpunit">
+            <arg value="--configuration"/>
+            <arg path="${basedir}/phpunit.xml"/>
+        </exec>
+    </target>
+</project>
+
+

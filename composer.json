@@ -1,0 +1,18 @@
+{
+    "require": {
+        "symfony/console": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {"WattpadCodingChallenge\\": "src/WattpadCodingChallenge"}
+    },
+    "autoload-dev": {
+        "psr-4": {"WattpadCodingChallenge\\": "tests/WattpadCodingChallenge"}
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.5",
+        "phpunit/phpunit": "^4.8"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
