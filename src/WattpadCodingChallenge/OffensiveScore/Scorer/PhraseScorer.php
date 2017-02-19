@@ -2,6 +2,7 @@
 
 namespace WattpadCodingChallenge\OffensiveScore\Scorer;
 
+use WattpadCodingChallenge\Phrase\Phrase;
 use WattpadCodingChallenge\Phrase\PhraseCollection;
 use WattpadCodingChallenge\Word\WordCollection;
 
@@ -20,6 +21,20 @@ abstract class PhraseScorer implements ScorerInterface
      */
     public function scoreWordCollection(WordCollection $words)
     {
-        return 1;
+        $score = 0;
+
+        /** @var Phrase $phrase */
+        foreach ($this->phrases as $phrase) {
+            if ($words->containsPhrase($phrase)) {
+                $score = $this->incrementScore($score);
+            }
+        }
+        return $score;
     }
+
+    /**
+     * @param int $currentScore
+     * @return int
+     */
+    abstract protected function incrementScore($currentScore);
 }

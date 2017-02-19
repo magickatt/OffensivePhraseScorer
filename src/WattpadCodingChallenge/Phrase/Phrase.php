@@ -2,6 +2,8 @@
 
 namespace WattpadCodingChallenge\Phrase;
 
+use WattpadCodingChallenge\Word\Word;
+
 class Phrase
 {
     private $words;
@@ -19,5 +21,13 @@ class Phrase
     public function isSingleWord()
     {
         return $this->count() === 1;
+    }
+
+    /**
+     * @return Word
+     */
+    public function getFirstWord()
+    {
+        return $this->words[0];
     }
 }

@@ -10,7 +10,7 @@ use Traversable;
 
 class Collection implements Countable, ArrayAccess, IteratorAggregate
 {
-    private $items = [];
+    protected $items = [];
 
     public function count()
     {

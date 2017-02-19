@@ -15,4 +15,9 @@ class Word
     {
         return $this->word;
     }
+
+    public function equalTo(Word $word)
+    {
+        return strcasecmp($word->word(), $this->word()) === 0;
+    }
 }
