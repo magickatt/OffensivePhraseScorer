@@ -3,13 +3,13 @@
 namespace WattpadCodingChallenge\Word;
 
 use InvalidArgumentException;
-use WattpadCodingChallenge\Collection\Collection;
+use WattpadCodingChallenge\Collection\AbstractCollection;
 use WattpadCodingChallenge\Phrase\Phrase;
 
 /**
  * Collection of words
  */
-class WordCollection extends Collection
+class WordCollection extends AbstractCollection
 {
     /**
      * @param Word $word
@@ -45,7 +45,7 @@ class WordCollection extends Collection
                 } else {
                     for ($y = 1; $y < $phrase->count(); $y++) {
                         if (!$this->getWordByOffset($x + $y)->equalTo($phrase->getWordByOffset($y))) {
-                            continue 2;
+                            break 2;
                         }
                     }
                     return true; // Multiple word phrase match

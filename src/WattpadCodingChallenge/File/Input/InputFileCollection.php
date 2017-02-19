@@ -2,10 +2,10 @@
 
 namespace WattpadCodingChallenge\File\Input;
 
-use WattpadCodingChallenge\Collection\Collection;
+use WattpadCodingChallenge\Collection\AbstractCollection;
 use WattpadCodingChallenge\File\File;
 
-class InputFileCollection extends Collection
+class InputFileCollection extends AbstractCollection
 {
     /**
      * @param File $file

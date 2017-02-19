@@ -5,7 +5,7 @@ namespace WattpadCodingChallenge\File;
 use SplFileInfo;
 use PHPUnit_Framework_TestCase as TestCase;
 
-class InputFileTest extends TestCase
+class FileTest extends TestCase
 {
     /** @var string */
     private $path;

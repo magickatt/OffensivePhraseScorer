@@ -2,12 +2,12 @@
 
 namespace WattpadCodingChallenge\Phrase;
 
-use WattpadCodingChallenge\Collection\Collection;
+use WattpadCodingChallenge\Collection\AbstractCollection;
 
 /**
  * Collection of phrases
  */
-class PhraseCollection extends Collection
+class PhraseCollection extends AbstractCollection
 {
     /**
      * @param Phrase $phrase

@@ -2,13 +2,13 @@
 
 namespace WattpadCodingChallenge\Word\Filter;
 
-class TestFilter implements FilterInterface
+class TrimFilter implements FilterInterface
 {
     /**
      * @inheritdoc
      */
     public function sanitizeWord($string)
     {
-        return $string;
+        return trim($string);
     }
 }
