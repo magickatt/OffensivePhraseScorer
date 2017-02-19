@@ -11,6 +11,12 @@ use WattpadCodingChallenge\OffensiveScore\Scorer\LowRiskPhraseScorer;
 
 class OffensiveScoreServiceFactory
 {
+    /**
+     * Create an offensive score service using the following scorers
+     * @param WordExtractor $wordExtractor
+     * @param PhraseExtractor $phraseExtractor
+     * @return OffensiveScoreService
+     */
     public function create(WordExtractor $wordExtractor, PhraseExtractor $phraseExtractor)
     {
         // @todo Make these parameterised

@@ -2,21 +2,27 @@
 
 namespace WattpadCodingChallenge\Phrase;
 
-use WattpadCodingChallenge\Collection\Collection;
 use WattpadCodingChallenge\Word\Word;
+use WattpadCodingChallenge\Word\WordCollection;
 
-class Phrase extends Collection
+/**
+ * Phrases are essentially collections of words
+ */
+class Phrase extends WordCollection
 {
+    /**
+     * @param Word[] $words
+     */
     public function __construct(array $words)
     {
-        $this->items = $words;
+        foreach ($words as $word) {
+            $this->addWord($word);
+        }
     }
 
-    public function count()
-    {
-        return count($this->items);
-    }
-
+    /**
+     * @return bool
+     */
     public function isSingleWord()
     {
         return $this->count() === 1;

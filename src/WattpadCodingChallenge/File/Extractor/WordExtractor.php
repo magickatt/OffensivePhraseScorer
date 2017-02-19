@@ -19,12 +19,21 @@ class WordExtractor
         $this->builder = $builder;
     }
 
+    /**
+     * @param File $file
+     * @return WordCollection
+     */
     public function extractWordsFromFile(File $file)
     {
         $sentence = file_get_contents($file->getPath());
         return $this->createWordCollectionFromArray(explode(' ', $sentence));
     }
 
+    /**
+     * Create a word collection from the array of words found in the input file
+     * @param array $array
+     * @return WordCollection
+     */
     private function createWordCollectionFromArray(array $array)
     {
         $collection = new WordCollection();

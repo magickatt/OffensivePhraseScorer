@@ -2,6 +2,9 @@
 
 namespace WattpadCodingChallenge\OffensiveScore\Scorer;
 
+/**
+ * Offensive scoring for low risk phrases
+ */
 class LowRiskPhraseScorer extends PhraseScorer
 {
     const SCORE_INCREMENT = 1;

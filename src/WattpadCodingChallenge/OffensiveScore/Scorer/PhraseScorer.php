@@ -6,10 +6,17 @@ use WattpadCodingChallenge\Phrase\Phrase;
 use WattpadCodingChallenge\Phrase\PhraseCollection;
 use WattpadCodingChallenge\Word\WordCollection;
 
+/**
+ * Offensive scoring for phrases
+ */
 abstract class PhraseScorer implements ScorerInterface
 {
+    /** @var PhraseCollection */
     protected $phrases;
 
+    /**
+     * @param PhraseCollection $phrases
+     */
     public function __construct(PhraseCollection $phrases)
     {
         $this->phrases = $phrases;

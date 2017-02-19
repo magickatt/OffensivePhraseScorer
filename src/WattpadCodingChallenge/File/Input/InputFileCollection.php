@@ -15,6 +15,9 @@ class InputFileCollection extends Collection
         $this->addItem($file);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function offsetSet($offset, $value)
     {
         if ($value instanceof File) {

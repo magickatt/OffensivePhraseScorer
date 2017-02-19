@@ -7,13 +7,20 @@ class InputFileService
     /** @var InputFileScanner */
     private $scanner;
 
+    /**
+     * @param InputFileScanner $scanner
+     */
     public function __construct(InputFileScanner $scanner)
     {
         $this->scanner = $scanner;
     }
 
-    public function getInputFilesFromDirectory($path)
+    /**
+     * @param string $directory
+     * @return InputFileCollection
+     */
+    public function getInputFilesFromDirectory($directory)
     {
-        return $this->scanner->scanDirectoryForInputFiles($path);
+        return $this->scanner->scanDirectoryForInputFiles($directory);
     }
 }

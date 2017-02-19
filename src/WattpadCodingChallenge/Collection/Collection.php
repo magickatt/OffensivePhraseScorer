@@ -6,30 +6,39 @@ use Countable;
 use ArrayAccess;
 use IteratorAggregate;
 use ArrayIterator;
-use Traversable;
 
 class Collection implements Countable, ArrayAccess, IteratorAggregate
 {
+    /** @var array */
     protected $items = [];
 
+    /**
+     * @inheritdoc
+     */
     public function count()
     {
         return count($this->items);
     }
 
     /**
-     * @return Traversable
+     * @inheritdoc
      */
     public function getIterator()
     {
         return new ArrayIterator($this->items);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->items);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function offsetGet($offset)
     {
         if ($this->offsetExists($offset)) {
@@ -37,11 +46,17 @@ class Collection implements Countable, ArrayAccess, IteratorAggregate
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function offsetSet($offset, $value)
     {
         $this->items[$offset] = $value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function offsetUnset($offset)
     {
         if ($this->offsetExists($offset)) {

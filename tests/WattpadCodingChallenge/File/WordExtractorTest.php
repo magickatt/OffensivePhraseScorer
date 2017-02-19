@@ -5,7 +5,9 @@ namespace WattpadCodingChallenge\File;
 use SplFileInfo;
 use PHPUnit_Framework_TestCase as TestCase;
 use WattpadCodingChallenge\File\Extractor\WordExtractor;
+use WattpadCodingChallenge\Word\Filter\TestFilter;
 use WattpadCodingChallenge\Word\Word;
+use WattpadCodingChallenge\Word\WordBuilder;
 use WattpadCodingChallenge\Word\WordCollection;
 
 class WordExtractorTest extends TestCase
@@ -30,7 +32,7 @@ class WordExtractorTest extends TestCase
         $this->path = realpath($path);
         $this->fileinfo = new SplFileInfo($this->path);
 
-        $this->wordExtractor = new WordExtractor();
+        $this->wordExtractor = new WordExtractor(new WordBuilder(new TestFilter()));
     }
 
     public function testItCanReadTheContentsOfTheFileItPointsTo()

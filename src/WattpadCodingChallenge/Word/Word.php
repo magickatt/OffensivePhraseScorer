@@ -9,6 +9,9 @@ class Word
     /** @var string */
     private $string;
 
+    /**
+     * @param string $string
+     */
     public function __construct($string)
     {
         if (!is_string($string)) {

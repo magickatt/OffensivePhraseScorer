@@ -2,9 +2,13 @@
 
 namespace WattpadCodingChallenge\Word;
 
+use InvalidArgumentException;
 use WattpadCodingChallenge\Collection\Collection;
 use WattpadCodingChallenge\Phrase\Phrase;
 
+/**
+ * Collection of words
+ */
 class WordCollection extends Collection
 {
     /**
@@ -15,36 +19,50 @@ class WordCollection extends Collection
         $this->addItem($word);
     }
 
+    /**
+     * @param mixed $offset
+     * @return Word|null
+     */
+    public function getWordByOffset($offset)
+    {
+        $word = $this->offsetGet($offset);
+        if ($word instanceof Word) {
+            return $word;
+        }
+    }
+
+    /**
+     * Does this collection of words contain this phrase somewhere within it?
+     * @param Phrase $phrase
+     * @return bool
+     */
     public function containsPhrase(Phrase $phrase)
     {
         for ($x = 0; $x < $this->count(); $x++) {
-            $word = $this->offsetGet($x);
-            if ($phrase->getFirstWord()->equalTo($word)) {
+            if ($phrase->getFirstWord()->equalTo($this->getWordByOffset($x))) {
                 if ($phrase->isSingleWord()) {
-                    return true;
+                    return true; // Single word phrase match
                 } else {
                     for ($y = 1; $y < $phrase->count(); $y++) {
-                        /** @var Word $nextSentenceWord */
-                        $nextSentenceWord = $this->offsetGet($x + $y);
-                        var_dump($nextSentenceWord);
-                        /** @var Word $nextPhraseWord */
-                        $nextPhraseWord = $phrase->offsetGet($y);
-                        if (!$nextSentenceWord->equalTo($nextPhraseWord)) {
+                        if (!$this->getWordByOffset($x + $y)->equalTo($phrase->getWordByOffset($y))) {
                             continue 2;
                         }
                     }
-                    return true;
-
+                    return true; // Multiple word phrase match
                 }
             }
         }
-        return false;
+        return false; // No match, phrase was not found
     }
 
+    /**
+     * @inheritdoc
+     */
     public function offsetSet($offset, $value)
     {
-        if ($value instanceof Word) {
-            parent::offsetSet($offset, $value);
+        if (!$value instanceof Word) {
+            throw new InvalidArgumentException('Word collection can only contain words');
         }
+        parent::offsetSet($offset, $value);
     }
 }
