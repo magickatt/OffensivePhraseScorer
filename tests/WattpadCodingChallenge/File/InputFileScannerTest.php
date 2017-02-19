@@ -3,6 +3,7 @@
 namespace WattpadCodingChallenge\File;
 
 use PHPUnit_Framework_TestCase as TestCase;
+use WattpadCodingChallenge\File\Input\InputFileScanner;
 
 class InputFileScannerTest extends TestCase
 {

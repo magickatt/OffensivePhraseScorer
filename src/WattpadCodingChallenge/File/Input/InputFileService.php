@@ -1,6 +1,6 @@
 <?php
 
-namespace WattpadCodingChallenge\File;
+namespace WattpadCodingChallenge\File\Input;
 
 class InputFileService
 {

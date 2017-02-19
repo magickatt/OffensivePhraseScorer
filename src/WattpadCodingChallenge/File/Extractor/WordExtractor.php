@@ -1,9 +1,10 @@
 <?php
 
-namespace WattpadCodingChallenge\File;
+namespace WattpadCodingChallenge\File\Extractor;
 
-use WattpadCodingChallenge\OffensiveScore\Word;
-use WattpadCodingChallenge\OffensiveScore\WordCollection;
+use WattpadCodingChallenge\File\File;
+use WattpadCodingChallenge\Word\Word;
+use WattpadCodingChallenge\Word\WordCollection;
 
 class WordExtractor
 {

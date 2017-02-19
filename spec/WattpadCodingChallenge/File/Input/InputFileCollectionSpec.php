@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\WattpadCodingChallenge\File;
+namespace spec\WattpadCodingChallenge\File\Input;
 
 use PhpSpec\ObjectBehavior;
 use WattpadCodingChallenge\File\File;

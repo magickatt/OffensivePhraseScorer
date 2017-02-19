@@ -4,8 +4,9 @@ namespace WattpadCodingChallenge\File;
 
 use SplFileInfo;
 use PHPUnit_Framework_TestCase as TestCase;
-use WattpadCodingChallenge\OffensiveScore\Word;
-use WattpadCodingChallenge\OffensiveScore\WordCollection;
+use WattpadCodingChallenge\File\Extractor\WordExtractor;
+use WattpadCodingChallenge\Word\Word;
+use WattpadCodingChallenge\Word\WordCollection;
 
 class WordExtractorTest extends TestCase
 {

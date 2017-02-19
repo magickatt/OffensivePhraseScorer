@@ -1,6 +1,6 @@
 <?php
 
-namespace WattpadCodingChallenge\OffensiveScore;
+namespace WattpadCodingChallenge\Word;
 
 use WattpadCodingChallenge\Collection\Collection;
 

@@ -3,25 +3,26 @@
 namespace spec\WattpadCodingChallenge\OffensiveScore;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use WattpadCodingChallenge\File\Extractor\WordExtractor;
 use WattpadCodingChallenge\File\File;
-use WattpadCodingChallenge\File\InputFileScanner;
-use WattpadCodingChallenge\File\WordExtractor;
+use WattpadCodingChallenge\OffensiveScore\Scorer\ScorerInterface;
+use WattpadCodingChallenge\Word\WordCollection;
 
 class OffensiveScoreServiceSpec extends ObjectBehavior
 {
-    function let(WordExtractor $wordExtractor)
-    {
-        $this->beConstructedWith($wordExtractor);
-    }
+    function it_should_calculate_an_offensive_score_from_an_input_file(
+        File $file,
+        WordExtractor $wordExtractor,
+        WordCollection $words,
+        ScorerInterface $scorer1,
+        ScorerInterface $scorer2
+    ) {
+        $this->beConstructedWith($wordExtractor, $scorer1, $scorer2);
 
-    function it_is_initializable()
-    {
-        $this->shouldHaveType('WattpadCodingChallenge\OffensiveScore\OffensiveScoreService');
-    }
+        $wordExtractor->extractWordsFromFile($file)->willReturn($words);
+        $scorer1->scoreWordCollection($words)->willReturn(1);
+        $scorer2->scoreWordCollection($words)->willReturn(2);
 
-//    function it_should_calculate_an_offensive_score_from_an_input_file(InputFile $inputFile)
-//    {
-//        $this->calculateOffensiveScore($inputFile);
-//    }
+        $this->calculateOffensiveScore($file)->shouldReturn(3);
+    }
 }

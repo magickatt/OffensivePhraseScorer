@@ -1,11 +1,10 @@
 <?php
 
-namespace spec\WattpadCodingChallenge\File;
+namespace spec\WattpadCodingChallenge\File\Input;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-use WattpadCodingChallenge\File\InputFileCollection;
-use WattpadCodingChallenge\File\InputFileScanner;
+use WattpadCodingChallenge\File\Input\InputFileCollection;
+use WattpadCodingChallenge\File\Input\InputFileScanner;
 
 class InputFileServiceSpec extends ObjectBehavior
 {

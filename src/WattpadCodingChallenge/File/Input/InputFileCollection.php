@@ -1,8 +1,9 @@
 <?php
 
-namespace WattpadCodingChallenge\File;
+namespace WattpadCodingChallenge\File\Input;
 
 use WattpadCodingChallenge\Collection\Collection;
+use WattpadCodingChallenge\File\File;
 
 class InputFileCollection extends Collection
 {

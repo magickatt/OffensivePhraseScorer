@@ -1,11 +1,10 @@
 <?php
 
-namespace WattpadCodingChallenge\File;
+namespace WattpadCodingChallenge\File\Input;
 
-use SplFileInfo;
-use SplFileObject;
 use DirectoryIterator;
 use InvalidArgumentException;
+use WattpadCodingChallenge\File\File;
 
 class InputFileScanner
 {

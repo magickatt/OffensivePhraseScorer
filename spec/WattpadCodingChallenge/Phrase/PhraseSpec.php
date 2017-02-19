@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\WattpadCodingChallenge\OffensiveScore;
+namespace spec\WattpadCodingChallenge\OffensiveScore\Phrase;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
