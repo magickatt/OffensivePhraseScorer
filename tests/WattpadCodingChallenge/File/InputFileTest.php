@@ -22,13 +22,12 @@ class InputFileTest extends TestCase
         $path = sys_get_temp_dir().DIRECTORY_SEPARATOR.$this->filename;
         touch($path);
         $this->path = realpath($path);
-
         $this->fileinfo = new SplFileInfo($this->path);
     }
 
     public function testItCanBeConstructedFromFileInfo()
     {
-        $inputFile = new InputFile($this->fileinfo);
+        $inputFile = new File($this->fileinfo);
 
         $this->assertEquals($inputFile->getFilename(), $this->filename);
         $this->assertEquals($inputFile->getPath(), $this->path);

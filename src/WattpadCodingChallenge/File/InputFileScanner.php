@@ -2,6 +2,8 @@
 
 namespace WattpadCodingChallenge\File;
 
+use SplFileInfo;
+use SplFileObject;
 use DirectoryIterator;
 use InvalidArgumentException;
 
@@ -34,7 +36,7 @@ class InputFileScanner
 
     private function createInputFileAndAddToCollection(\SplFileInfo $file, InputFileCollection $collection)
     {
-        $inputFile = new InputFile($file);
+        $inputFile = new File($file);
         $collection->addInputFile($inputFile);
     }
 }

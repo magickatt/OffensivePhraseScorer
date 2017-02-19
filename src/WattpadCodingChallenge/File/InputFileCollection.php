@@ -2,57 +2,22 @@
 
 namespace WattpadCodingChallenge\File;
 
-use Countable;
-use ArrayAccess;
-use IteratorAggregate;
-use ArrayIterator;
-use Traversable;
+use WattpadCodingChallenge\Collection\Collection;
 
-class InputFileCollection implements Countable, ArrayAccess, IteratorAggregate
+class InputFileCollection extends Collection
 {
-    private $files = [];
-
-    public function addInputFile(InputFile $file)
-    {
-        $this->files[] = $file;
-    }
-
-    public function count()
-    {
-        return count($this->files);
-    }
-
     /**
-     * @return Traversable
+     * @param File $file
      */
-    public function getIterator()
+    public function addInputFile(File $file)
     {
-        return new ArrayIterator($this->files);
-    }
-
-    public function offsetExists($offset)
-    {
-        return array_key_exists($offset, $this->files);
-    }
-
-    public function offsetGet($offset)
-    {
-        if ($this->offsetExists($offset)) {
-            return $this->files[$offset];
-        }
+        $this->addItem($file);
     }
 
     public function offsetSet($offset, $value)
     {
-        if ($value instanceof InputFile) {
-            $this->files[$offset] = $value;
-        }
-    }
-
-    public function offsetUnset($offset)
-    {
-        if ($this->offsetExists($offset)) {
-            unset($this->files[$offset]);
+        if ($value instanceof File) {
+            parent::offsetSet($offset, $value);
         }
     }
 }

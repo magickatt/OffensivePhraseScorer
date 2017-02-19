@@ -8,7 +8,7 @@ use WattpadCodingChallenge as W;
 $application = new Application();
 $command = new W\Console\Command\OffensiveScoreCommand(
     new W\File\InputFileService(new W\File\InputFileScanner()),
-    new W\OffensiveScore\OffensiveScoreService()
+    new W\OffensiveScore\OffensiveScoreService(new W\File\WordExtractor())
 );
 $application->add($command);
 $application->setDefaultCommand($command->getName(), true);

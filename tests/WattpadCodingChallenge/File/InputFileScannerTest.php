@@ -39,7 +39,7 @@ class InputFileScannerTest extends TestCase
         // Assert that the collection contains the right number of files
         $this->assertCount(count($this->paths), $collection);
 
-        /** @var InputFile $inputFile */
+        /** @var File $inputFile */
         foreach ($collection as $inputFile) {
             // Ordering of directory scanning can be random so cannot reliably check order
             $this->assertContains($inputFile->getPath(), $this->paths);

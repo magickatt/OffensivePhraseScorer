@@ -4,7 +4,7 @@ namespace WattpadCodingChallenge\File;
 
 use SplFileInfo;
 
-class InputFile
+class File
 {
     /** @var string */
     private $path;

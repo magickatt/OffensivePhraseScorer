@@ -1,0 +1,4 @@
+suites:
+    wattpad_suite:
+        namespace: WattpadCodingChallenge 
+        psr4_prefix: WattpadCodingChallenge

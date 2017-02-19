@@ -3,9 +3,7 @@
 namespace spec\WattpadCodingChallenge\File;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-use PHPUnit_Framework_Assert as Assert;
-use WattpadCodingChallenge\File\InputFile;
+use WattpadCodingChallenge\File\File;
 
 class InputFileCollectionSpec extends ObjectBehavior
 {
@@ -15,7 +13,7 @@ class InputFileCollectionSpec extends ObjectBehavior
 
     private $file3;
 
-    function let(InputFile $file1, InputFile $file2, InputFile $file3)
+    function let(File $file1, File $file2, File $file3)
     {
         $this->file1 = $file1;
         $this->file2 = $file2;
@@ -41,7 +39,7 @@ class InputFileCollectionSpec extends ObjectBehavior
         $this->offsetExists(2)->shouldReturn(true);
     }
 
-    function it_can_have_input_files_added_to_it(InputFile $file4, InputFile $file5, InputFile $file6)
+    function it_can_have_input_files_added_to_it(File $file4, File $file5, File $file6)
     {
         $this->addInputFile($file4);
         $this->addInputFile($file5);
