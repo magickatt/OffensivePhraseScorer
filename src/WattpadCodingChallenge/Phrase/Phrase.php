@@ -2,20 +2,19 @@
 
 namespace WattpadCodingChallenge\Phrase;
 
+use WattpadCodingChallenge\Collection\Collection;
 use WattpadCodingChallenge\Word\Word;
 
-class Phrase
+class Phrase extends Collection
 {
-    private $words;
-
     public function __construct(array $words)
     {
-        $this->words = $words;
+        $this->items = $words;
     }
 
     public function count()
     {
-        return count($this->words);
+        return count($this->items);
     }
 
     public function isSingleWord()
@@ -28,6 +27,6 @@ class Phrase
      */
     public function getFirstWord()
     {
-        return $this->words[0];
+        return $this->items[0];
     }
 }

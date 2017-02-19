@@ -20,8 +20,22 @@ class WordCollection extends Collection
         for ($x = 0; $x < $this->count(); $x++) {
             $word = $this->offsetGet($x);
             if ($phrase->getFirstWord()->equalTo($word)) {
-                // @todo Implement handling of multi-word phrases
-                return true;
+                if ($phrase->isSingleWord()) {
+                    return true;
+                } else {
+                    for ($y = 1; $y < $phrase->count(); $y++) {
+                        /** @var Word $nextSentenceWord */
+                        $nextSentenceWord = $this->offsetGet($x + $y);
+                        var_dump($nextSentenceWord);
+                        /** @var Word $nextPhraseWord */
+                        $nextPhraseWord = $phrase->offsetGet($y);
+                        if (!$nextSentenceWord->equalTo($nextPhraseWord)) {
+                            continue 2;
+                        }
+                    }
+                    return true;
+
+                }
             }
         }
         return false;
