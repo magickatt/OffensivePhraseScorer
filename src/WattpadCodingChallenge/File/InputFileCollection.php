@@ -4,8 +4,11 @@ namespace WattpadCodingChallenge\File;
 
 use Countable;
 use ArrayAccess;
+use IteratorAggregate;
+use ArrayIterator;
+use Traversable;
 
-class InputFileCollection implements Countable, ArrayAccess
+class InputFileCollection implements Countable, ArrayAccess, IteratorAggregate
 {
     private $files = [];
 
@@ -17,6 +20,14 @@ class InputFileCollection implements Countable, ArrayAccess
     public function count()
     {
         return count($this->files);
+    }
+
+    /**
+     * @return Traversable
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this->files);
     }
 
     public function offsetExists($offset)

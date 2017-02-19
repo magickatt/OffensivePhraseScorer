@@ -2,7 +2,6 @@
 
 namespace WattpadCodingChallenge\File;
 
-use DirectoryIterator;
 use PHPUnit_Framework_TestCase as TestCase;
 
 class InputFileScannerTest extends TestCase
@@ -10,9 +9,6 @@ class InputFileScannerTest extends TestCase
     private $directory;
 
     private $paths = [];
-
-    /** @var DirectoryIterator */
-    private $directoryIterator;
 
     /** @var InputFileScanner */
     private $inputFileScanner;
@@ -24,6 +20,7 @@ class InputFileScannerTest extends TestCase
         };
         $this->directory = sys_get_temp_dir().DIRECTORY_SEPARATOR.$randomString();
         mkdir($this->directory);
+        $this->directory = realpath($this->directory);
 
         $this->paths[0] = $this->directory.DIRECTORY_SEPARATOR.$randomString().'.txt';
         $this->paths[1] = $this->directory.DIRECTORY_SEPARATOR.$randomString().'.txt';
@@ -32,24 +29,20 @@ class InputFileScannerTest extends TestCase
             touch($path);
         }
 
-        $this->directoryIterator = new DirectoryIterator($this->directory);
-
-        $this->inputFileScanner = new InputFileScanner();
+        $this->inputFileScanner = new InputFileScanner($this->directory);
     }
 
     public function testItIteratesOverEachFile()
     {
-        $collection = $this->inputFileScanner->scanDirectoryForInputFiles($this->directoryIterator);
+        $collection = $this->inputFileScanner->scanDirectoryForInputFiles($this->directory);
 
         // Assert that the collection contains the right number of files
         $this->assertCount(count($this->paths), $collection);
 
-        // Assert that the collection contains the files in the right order
-        foreach ($collection as $key => $value) {
-            /** @var InputFile $inputFile */
-            $inputFile = $collection->offsetGet($key);
-            $this->assertEquals($this->paths[$key], $inputFile->getPath());
+        /** @var InputFile $inputFile */
+        foreach ($collection as $inputFile) {
+            // Ordering of directory scanning can be random so cannot reliably check order
+            $this->assertContains($inputFile->getPath(), $this->paths);
         }
     }
-
 }
