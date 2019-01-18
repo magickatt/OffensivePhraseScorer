@@ -1,4 +1,4 @@
-#Wattpad Coding Challenge
+# Offensive Phrase Scorer
 
 ## Running
 
@@ -10,9 +10,9 @@ To run the application please use the following command, which requires PHP 5.6 
 
 All arguments are optional, and defaults are specified so that the application will run using the data directory
 
-* input-dir - Where the input files are located
-* output-dir - Where to write the output file to
-* output-file - Filename for the output file
+* `input-dir` - Where the input files are located
+* `output-dir` - Where to write the output file to
+* `output-file` - Filename for the output file
 
 ## Tests
 
